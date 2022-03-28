@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import NavBar from './components/NavBar/NavBar.vue'
-import { RouterView } from 'vue-router'
+import { RouterView, useRoute } from 'vue-router'
+const route = useRoute()
 </script>
 
 <template>
   <NavBar />
-  <RouterView />
+  <RouterView :key="route.path"></RouterView>
 </template>
 
 <style>
