@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import NavBar from './components/NavBar/NavBar.vue'
-import { RouterView, useRoute } from 'vue-router'
-const route = useRoute()
+import NavBar from "./components/NavBar/NavBar.vue";
+import { RouterView, useRoute } from "vue-router";
+const route = useRoute();
 </script>
 
 <template>
-  <NavBar />
+  <NavBar v-if="route.name !== 'login'" />
   <RouterView :key="route.path"></RouterView>
 </template>
 
 <style>
 #app {
+  overflow-y: auto;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

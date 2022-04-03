@@ -2,15 +2,15 @@ import { reactive } from "vue"
 import { House } from "./models"
 
 
-function createSearchStore(){
-    const state = reactive<{houses:House[]}>({
+function createSearchStore() {
+    const state = reactive<{ houses: House[] }>({
         houses: [] as House[]
     })
     return {
-        setHouses(houses:House[]){
+        setHouses(houses: House[]) {
             state.houses = [...houses]
         },
-        get houses(){
+        get houses() {
             return state.houses
         }
     }
