@@ -17,6 +17,7 @@ if (localStorage.userDetails) {
         <span class="link" v-if="userDetails"
           >{{ userDetails.name }} {{ userDetails.lastName }}</span
         >
+        
         <span class="link" @click="router.push({ name: 'login' })" v-else
           >inicio de sesion</span
         >
