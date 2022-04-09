@@ -47,8 +47,11 @@ function selectValue(value: string) {
 .options {
   position: absolute;
   display: none;
+  background-color: white;
+  width: 170px;
 }
 .my-pos {
   position: relative;
+  width: 170px;
 }
 </style>

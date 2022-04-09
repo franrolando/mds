@@ -1,10 +1,7 @@
 <template>
-  <div class="base-page">
+  <div>
     <slot></slot>
   </div>
 </template>
 
-<style scoped>
-.base-page {
-}
-</style>
+<style scoped></style>

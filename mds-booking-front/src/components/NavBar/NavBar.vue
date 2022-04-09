@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { UserDetails } from "../../views/Login/models";
 import Logo from "../Logo.vue";
+import Menu from "./Menu.vue";
 const router = useRouter();
-let userDetails: UserDetails;
+let userDetails = ref({});
+
 if (localStorage.userDetails) {
   userDetails = JSON.parse(localStorage.userDetails);
 }
@@ -13,15 +15,7 @@ if (localStorage.userDetails) {
   <div class="navbar">
     <div class="header">
       <Logo />
-      <div>
-        <span class="link" v-if="userDetails"
-          >{{ userDetails.name }} {{ userDetails.lastName }}</span
-        >
-        
-        <span class="link" @click="router.push({ name: 'login' })" v-else
-          >inicio de sesion</span
-        >
-      </div>
+      <Menu />
     </div>
     <div class="items">
       <h1 class="link" @click="router.push({ name: 'home' })">INICIO</h1>

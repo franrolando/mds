@@ -1,6 +1,6 @@
 import HttpClient from '../../HttpClient';
 import { data, filteredData } from './data';
-import { House } from './models';
+import { Filter, House } from './models';
 export function findAll(): House[] {
     try {
         /* const result = await HttpClient.get('/findAll')
@@ -11,7 +11,7 @@ export function findAll(): House[] {
     return data
 }
 
-export function findByFilters(filters: any): House[] {
+export function findByFilters(filters: Filter[]): House[] {
     try {
         //const result = await HttpClient.get('/findBy?name=&startDay=&endDay=')
         //return result.data

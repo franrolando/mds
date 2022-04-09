@@ -2,10 +2,11 @@
 import NavBar from "./components/NavBar/NavBar.vue";
 import { RouterView, useRoute } from "vue-router";
 const route = useRoute();
+const noNavBar = ["login", "account", "profile", "publications", "bookings", "inquiries"];
 </script>
 
 <template>
-  <NavBar v-if="route.name !== 'login'" />
+  <NavBar v-if="!noNavBar.includes(route.name)" />
   <RouterView :key="route.path"></RouterView>
 </template>
 

@@ -10,8 +10,8 @@ const password = ref("");
 function onLogin() {
   doLogin({ username: username.value, password: password.value })
     .then((data) => {
-      localStorage.userDetails = JSON.stringify(data);
-      router.push({ name: 'home' })
+      localStorage.setItem("userDetails", JSON.stringify(data));
+      router.push({ name: "home" });
     })
     .catch((e) => {
       username.value = "";

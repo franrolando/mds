@@ -6,18 +6,26 @@ import store from "./store";
 import { computed, ref } from "vue";
 import Grid from "../../components/Grid.vue";
 import SearchBar from "../../components/SearchBar/SearchBar.vue";
+import { Filter } from "./models";
 
 const route = useRoute();
 const houses = computed(() => store.houses);
-const searchOptions = ref({});
+const searchOptions = ref({ input: "", startDay: "", endDay: "" });
 if (route.query.location) {
-  console.log(route.query);
-  fetchFindByFilters(route.query.location);
+  let filters = [] as Filter[];
+  let location = { name: "location", value: route.query.location };
+  filters.push(location);
+  fetchFindByFilters(filters);
 } else {
   fetchFindAll();
 }
 function onSearch() {
-  fetchFindByFilters(searchOptions.value);
+  let filters = [] as Filter[];
+  let location = { name: "location", value: searchOptions.value.input };
+  let startDate = { name: "startDay", value: searchOptions.value.startDay };
+  let endDate = { name: "endDay", value: searchOptions.value.endDay };
+  filters.push(location, startDate, endDate);
+  fetchFindByFilters(filters);
 }
 </script>
 
