@@ -5,8 +5,9 @@ import { UserDetails } from "../../views/Login/models";
 const router = useRouter();
 let userDetails = ref({} as UserDetails);
 let visible = ref(false);
-if (localStorage.userDetails) {
-  userDetails.value = JSON.parse(localStorage.userDetails);
+if (localStorage.getItem('userDetails')) {
+  userDetails.value = JSON.parse(localStorage.getItem('userDetails') as string);
+  console.log(userDetails.value)
 }
 
 function showMenu() {
@@ -14,12 +15,10 @@ function showMenu() {
 }
 
 function closeSesion() {
-  console.log(userDetails.value);
   localStorage.removeItem("userDetails");
   router.push({ name: "home" });
   visible.value = false;
   userDetails.value = { country: "", lastName: "", name: "", password: "", username: "" };
-  console.log(userDetails.value);
 }
 
 function profileView() {
@@ -30,6 +29,10 @@ function profileView() {
 function closeMenu() {
   visible.value = false;
 }
+
+function onLogin(){
+  router.push({ name: 'login' })
+}
 </script>
 
 <template>
@@ -38,7 +41,7 @@ function closeMenu() {
       >{{ userDetails.name }} {{ userDetails.lastName }}</span
     >
 
-    <span class="link" @click="router.push({ name: 'login' })" v-else
+    <span class="link" @click="onLogin()" v-else
       >inicio de sesion</span
     >
     <div class="menu-wrapper" v-show="visible">

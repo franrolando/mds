@@ -24,7 +24,6 @@ let menuItems = [
 </script>
 
 <template>
-  <BasePage>
     <div class="page-wrapper">
       <div class="navbar items">
         <div
@@ -37,7 +36,6 @@ let menuItems = [
       </div>
       <div class="content"><slot /></div>
     </div>
-  </BasePage>
 </template>
 
 <style scoped>

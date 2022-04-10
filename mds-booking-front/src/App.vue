@@ -8,7 +8,7 @@ const noNavBar = ["login", "account", "profile", "publications", "bookings", "in
 
 <template>
   <div class="my">
-    <Header class="header" />
+    <Header class="header" :key="route.path"/>
     <RouterView :key="route.path"></RouterView>
   </div>
 </template>
