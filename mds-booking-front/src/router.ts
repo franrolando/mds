@@ -6,6 +6,7 @@ import Profile from './views/Profile/Profile.vue'
 import Inquiries from './views/Inquiries/Inquiries.vue'
 import Bookings from './views/Bookings/Bookings.vue'
 import Publications from './views/Publications/Publications.vue'
+import House from './views/House/House.vue'
 
 
 const router = createRouter({
@@ -45,6 +46,11 @@ const router = createRouter({
             path: '/publications',
             name: 'publications',
             component: Publications
+        }, {
+            path: '/house/:id',
+            name: 'house',
+            component: House,
+            props: true
         }
     ]
 })

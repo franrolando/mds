@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import Logo from "./Logo.vue";
+import Menu from "./NavBar/Menu.vue";
+</script>
+
 <template>
   <div class="header">
     <Logo />
@@ -9,5 +14,7 @@
 .header {
   display: flex;
   justify-content: space-between;
+  z-index: 10;
+  background-color: white;
 }
 </style>
