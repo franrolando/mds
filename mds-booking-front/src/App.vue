@@ -15,7 +15,7 @@ const noNavBar = ["login", "account", "profile", "publications", "bookings", "in
 
 <style>
 #app {
-  overflow-y: scroll;
+  overflow-y: auto;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

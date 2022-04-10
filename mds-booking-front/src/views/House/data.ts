@@ -1,3 +1,5 @@
+import { House } from "./models"
+
 export const data = [{
     id: 1,
     name: 'name1',
@@ -78,4 +80,4 @@ export const data = [{
     id: 20,
     name: 'name20',
     images: ['https://picsum.photos/1920/1080?random', 'https://picsum.photos/1920/1080?random', 'https://picsum.photos/1920/1080?random']
-}]
+}] as House[]

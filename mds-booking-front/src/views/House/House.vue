@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { useRouter } from "vue-router";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
 import BasePage from "../../components/BasePageNavBar.vue";
-import actions from "./actions";
-const router = useRouter();
-router;
-actions.fetchFindById();
+import { fetchFindById } from "./actions";
+import store from "./store";
+const route = useRoute();
+let id = route.params.id;
+const house = computed(() => store.houses);
+fetchFindById(id);
 </script>
 
 <template>
-  <BasePage> </BasePage>
+  <BasePage> {{ house.images }} </BasePage>
 </template>

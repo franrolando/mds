@@ -3,15 +3,19 @@ import { House } from "./models"
 
 
 function createSearchStore() {
-    const state = reactive<{ houses: House[] }>({
-        houses: [] as House[]
+    const state = reactive<{ house: House }>({
+        house: {
+            id: 0,
+            images: [],
+            name: ''
+        }
     })
     return {
-        setHouses(houses: House[]) {
-            state.houses = [...houses]
+        setHouses(house: House) {
+            state.house = house
         },
         get houses() {
-            return state.houses
+            return state.house
         }
     }
 }
