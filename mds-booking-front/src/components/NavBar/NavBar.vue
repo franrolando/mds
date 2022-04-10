@@ -13,10 +13,6 @@ if (localStorage.userDetails) {
 
 <template>
   <div class="navbar">
-    <div class="header">
-      <Logo />
-      <Menu />
-    </div>
     <div class="items">
       <h1 class="link" @click="router.push({ name: 'home' })">INICIO</h1>
       <h1
@@ -34,17 +30,8 @@ if (localStorage.userDetails) {
 .navbar {
   display: flex;
   flex-direction: column;
-  height: 175px;
   width: 100%;
   position: sticky;
-  top: 0;
-  z-index: 1;
-  background-color: white;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
 }
 
 .items {

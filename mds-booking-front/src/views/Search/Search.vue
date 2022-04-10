@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BasePage from "../../components/BasePage.vue";
+import BasePage from "../../components/BasePageNavBar.vue";
 import { useRoute } from "vue-router";
 import { fetchFindAll, fetchFindByFilters } from "./actions";
 import store from "./store";
@@ -7,6 +7,7 @@ import { computed, ref } from "vue";
 import Grid from "../../components/Grid.vue";
 import SearchBar from "../../components/SearchBar/SearchBar.vue";
 import { Filter } from "./models";
+import NavBar from "../../components/NavBar/NavBar.vue";
 
 const route = useRoute();
 const houses = computed(() => store.houses);
@@ -54,8 +55,8 @@ function onSearch() {
   background-color: white;
   width: 100%;
   justify-content: center;
-  top: 175px;
-  z-index: 1;
+  top: 160px;
+  z-index: 10;
   height: 100px;
 }
 </style>

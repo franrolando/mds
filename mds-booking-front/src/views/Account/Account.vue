@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BasePage from "../../components/BasePage.vue";
+import BasePage from "../../components/BasePageNavBar.vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 
@@ -44,6 +44,7 @@ let menuItems = [
 .page-wrapper {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 
 .navbar {

@@ -79,21 +79,3 @@ export const data = [{
     name: 'name20',
     images: ['https://picsum.photos/1920/1080?random', 'https://picsum.photos/1920/1080?random', 'https://picsum.photos/1920/1080?random']
 }]
-
-export const filteredData = [{
-    id: 17,
-    name: 'name17',
-    images: ['https://picsum.photos/1920/1080?random', 'https://picsum.photos/1920/1080?random', 'https://picsum.photos/1920/1080?random']
-}, {
-    id: 18,
-    name: 'name18',
-    images: ['https://picsum.photos/1920/1080?random', 'https://picsum.photos/1920/1080?random', 'https://picsum.photos/1920/1080?random']
-}, {
-    id: 19,
-    name: 'name19',
-    images: ['https://picsum.photos/1920/1080?random', 'https://picsum.photos/1920/1080?random', 'https://picsum.photos/1920/1080?random']
-}, {
-    id: 20,
-    name: 'name20',
-    images: ['https://picsum.photos/1920/1080?random', 'https://picsum.photos/1920/1080?random', 'https://picsum.photos/1920/1080?random']
-}]
