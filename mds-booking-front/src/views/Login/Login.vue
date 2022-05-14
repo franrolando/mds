@@ -3,14 +3,16 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import Logo from "../../components/Logo.vue";
 import { doLogin } from "./actions";
+import { useStore } from "../../stores/userDetails/userDetails";
+const store = useStore();
 const router = useRouter();
 const username = ref("");
 const password = ref("");
-
 function onLogin() {
   doLogin({ username: username.value, password: password.value })
     .then((data) => {
       localStorage.setItem("userDetails", JSON.stringify(data));
+      store.addUserDetails(data);
       router.push({ name: "home" });
     })
     .catch((e) => {

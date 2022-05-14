@@ -1,23 +1,24 @@
 import { reactive } from "vue"
 import { House } from "./models"
 
-
-function createSearchStore() {
+function createHouseStore() {
     const state = reactive<{ house: House }>({
         house: {
             id: 0,
             images: [],
-            name: ''
+            reserved: [],
+            name: '',
+            description: ''
         }
     })
     return {
-        setHouses(house: House) {
+        setHouse(house: House) {
             state.house = house
         },
-        get houses() {
+        get house() {
             return state.house
         }
     }
 }
 
-export default createSearchStore()
+export default createHouseStore()

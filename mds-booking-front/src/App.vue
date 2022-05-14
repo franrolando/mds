@@ -1,14 +1,12 @@
 <script setup lang="ts">
-import NavBar from "./components/NavBar/NavBar.vue";
 import { RouterView, useRoute } from "vue-router";
-import Header from "./components/Header.vue";
+import Header from "./components/Header/Header.vue";
 const route = useRoute();
-const noNavBar = ["login", "account", "profile", "publications", "bookings", "inquiries"];
 </script>
 
 <template>
   <div class="my">
-    <Header class="header" :key="route.path"/>
+    <Header class="header" />
     <RouterView :key="route.path"></RouterView>
   </div>
 </template>

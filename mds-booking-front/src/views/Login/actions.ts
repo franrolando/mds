@@ -1,4 +1,3 @@
-import store from "./store"
 import { Credentials } from "./models"
 import { login } from "./api"
 

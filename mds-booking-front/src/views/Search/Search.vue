@@ -7,7 +7,6 @@ import { computed, ref } from "vue";
 import Grid from "../../components/Grid.vue";
 import SearchBar from "../../components/SearchBar/SearchBar.vue";
 import { Filter } from "./models";
-import NavBar from "../../components/NavBar/NavBar.vue";
 
 const route = useRoute();
 const houses = computed(() => store.houses);
@@ -57,6 +56,8 @@ function onSearch() {
   justify-content: center;
   top: 160px;
   z-index: 10;
-  height: 100px;
+  height: 500px;
+  background-image: url("../../assets/Banner.jpg");
+  background-size: 100% 500px;
 }
 </style>

@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import Logo from "../Logo.vue";
-import Menu from "./Menu.vue";
 const router = useRouter();
 let userDetails = ref({});
 

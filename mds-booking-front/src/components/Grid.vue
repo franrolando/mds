@@ -1,23 +1,13 @@
 <script setup lang="ts">
-import { useRouter } from "vue-router";
 import { House } from "../views/Search/models";
 import Card from "./HouseCard.vue";
-const router = useRouter();
-const props = withDefaults(defineProps<{ houses: House[] }>(), {});
 
-function openHouse(house: House) {
-  router.push({ name: "house", params: { id: house.id } });
-}
+const props = withDefaults(defineProps<{ houses: House[] }>(), {});
 </script>
 
 <template>
   <div class="grid">
-    <Card
-      v-for="(house, i) of houses"
-      :key="i"
-      :house="house"
-      @click="openHouse(house)"
-    />
+    <Card v-for="(house, i) of houses" :key="i" :house="house" />
   </div>
 </template>
 

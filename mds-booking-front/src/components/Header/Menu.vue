@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { UserDetails } from "../../views/Login/models";
+import { useStore } from "../../stores/userDetails/userDetails";
+import { storeToRefs } from "pinia";
 const router = useRouter();
-let userDetails = ref({} as UserDetails);
-let visible = ref(false);
-if (localStorage.getItem('userDetails')) {
-  userDetails.value = JSON.parse(localStorage.getItem('userDetails') as string);
-  console.log(userDetails.value)
+const store = useStore();
+let { userDetails } = storeToRefs(store);
+console.log(userDetails);
+if (localStorage.getItem("userDetails")) {
+  store.addUserDetails(JSON.parse(localStorage.getItem("userDetails") as string));
 }
+let visible = ref(false);
 
 function showMenu() {
   visible.value = !visible.value;
@@ -18,7 +20,7 @@ function closeSesion() {
   localStorage.removeItem("userDetails");
   router.push({ name: "home" });
   visible.value = false;
-  userDetails.value = { country: "", lastName: "", name: "", password: "", username: "" };
+  store.logoutUser();
 }
 
 function profileView() {
@@ -30,8 +32,8 @@ function closeMenu() {
   visible.value = false;
 }
 
-function onLogin(){
-  router.push({ name: 'login' })
+function onLogin() {
+  router.push({ name: "login" });
 }
 </script>
 
@@ -41,9 +43,7 @@ function onLogin(){
       >{{ userDetails.name }} {{ userDetails.lastName }}</span
     >
 
-    <span class="link" @click="onLogin()" v-else
-      >inicio de sesion</span
-    >
+    <span class="link" @click="onLogin()" v-else>inicio de sesion</span>
     <div class="menu-wrapper" v-show="visible">
       <span class="link" @click="profileView()">Ver perfil</span>
       <span class="link" @click="closeSesion()">Cerrar sesion</span>

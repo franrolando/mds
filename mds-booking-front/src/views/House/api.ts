@@ -9,5 +9,10 @@ export function findByFilters(id: number): House {
     } catch (e) {
         console.log(e)
     }
+    let result = data.find((house) => house.id == id) as House
+    result.reserved.forEach(period => {
+        period.start = new Date(period.start.getTime() + 24 * 60 * 60 * 1000);
+        period.end = new Date(period.end.getTime() + 24 * 60 * 60 * 1000);
+    })
     return data.find((house) => house.id == id) as House
 }
