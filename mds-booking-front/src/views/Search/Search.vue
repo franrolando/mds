@@ -56,8 +56,8 @@ function onSearch() {
   justify-content: center;
   top: 160px;
   z-index: 10;
-  height: 500px;
+  height: 200px;
   background-image: url("../../assets/Banner.jpg");
-  background-size: 100% 500px;
+  background-size: 100% 200px;
 }
 </style>
