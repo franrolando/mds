@@ -6,7 +6,6 @@ import { storeToRefs } from "pinia";
 const router = useRouter();
 const store = useStore();
 let { userDetails } = storeToRefs(store);
-console.log(userDetails);
 if (localStorage.getItem("userDetails")) {
   store.addUserDetails(JSON.parse(localStorage.getItem("userDetails") as string));
 }

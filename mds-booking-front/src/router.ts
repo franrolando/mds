@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Contact from "./views/Contact.vue"
-import Search from "./views/Search/Search.vue"
+import Contact from "./views/Contact/Contact.vue"
+import Home from "./views/Home/Home.vue"
 import Login from './views/Login/Login.vue'
 import Profile from './views/Profile/Profile.vue'
 import Inquiries from './views/Inquiries/Inquiries.vue'
 import Bookings from './views/Bookings/Bookings.vue'
 import Publications from './views/Publications/Publications.vue'
 import House from './views/House/House.vue'
-
+import Search from './views/Search/Search.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -15,7 +15,7 @@ const router = createRouter({
         {
             path: '/',
             name: 'home',
-            component: Search
+            component: Home
         },
         {
             path: '/contact',
@@ -23,9 +23,9 @@ const router = createRouter({
             component: Contact
         },
         {
-            path: '/search',
-            name: 'search',
-            component: Search
+            path: '/filter',
+            name: 'filter',
+            component: Home
         }, {
             path: '/login',
             name: 'login',
@@ -51,6 +51,10 @@ const router = createRouter({
             name: 'house',
             component: House,
             props: true
+        }, {
+            path: '/search',
+            name: 'search',
+            component: Search
         }
     ]
 })

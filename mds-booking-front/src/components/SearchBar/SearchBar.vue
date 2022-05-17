@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import InputSearch from "./InputSearch/InputSearch.vue";
+import Roomates from "./Roomates/Roomates.vue";
 const startDay = ref("");
 const endDay = ref("");
 const input = ref("");
@@ -23,9 +24,10 @@ function submit() {
 </script>
 
 <template>
-  <div class="search-bar">
+  <div class="search-bar child-comp">
     <InputSearch v-model="input" />
-    <div class="date-filters">
+    <Roomates class="child-comp" />
+    <div class="date-filters child-comp">
       <input type="date" v-model="startDay" />
       <input type="date" v-model="endDay" />
       <button @click="submit()">Search</button>
@@ -38,10 +40,15 @@ function submit() {
   display: flex;
   flex-direction: row;
   margin: auto;
+  gap: 1px;
 }
 
 .date-filters {
   display: flex;
   max-height: 20px;
+}
+
+.child-comp {
+  height: 20px;
 }
 </style>

@@ -97,15 +97,3 @@ export const filteredData = [{
     name: 'name20',
     images: ['https://picsum.photos/1920/1080?random', 'https://picsum.photos/1920/1080?random', 'https://picsum.photos/1920/1080?random']
 }]
-
-export const zones = [
-    'Rocas Negras', 'El Remanso', 'La Tigra', 'Barrio San Blas', 'Pueblo Viejo'
-]
-
-export const prices = [
-    100, 50000
-]
-
-export const comodities = [
-    'WIFI', 'TV', 'Patio', 'Mascotas'
-]

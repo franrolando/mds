@@ -15,10 +15,11 @@ if (localStorage.userDetails) {
       <h1 class="link" @click="router.push({ name: 'home' })">INICIO</h1>
       <h1
         class="link"
-        @click="router.push({ name: 'search', query: { location: 'Frente al mar' } })"
+        @click="router.push({ name: 'filter', query: { location: 'Frente al mar' } })"
       >
         FRENTE AL MAR
       </h1>
+      <h1 class="link" @click="router.push({ name: 'search' })">BUSCAR</h1>
       <h1 class="link" @click="router.push({ name: 'contact' })">CONTACTO</h1>
     </div>
   </div>

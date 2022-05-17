@@ -1,5 +1,5 @@
 import HttpClient from '../../HttpClient';
-import { data, filteredData, comodities, prices, zones } from './data';
+import { data, filteredData } from './data';
 import { Filter, House } from './models';
 export function findAll(): House[] {
     try {
@@ -19,18 +19,4 @@ export function findByFilters(filters: Filter[]): House[] {
         console.log(e)
     }
     return filteredData
-}
-
-export function findZones() {
-    return zones
-}
-
-
-export function findPrices() {
-    return prices
-}
-
-
-export function findComodities() {
-    return comodities
 }

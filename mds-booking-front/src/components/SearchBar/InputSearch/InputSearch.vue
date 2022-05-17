@@ -25,7 +25,12 @@ function selectValue(value: string) {
 
 <template>
   <div>
-    <input class="my-pos" @input="onSearch($event.target.value)" v-model="modelValue" />
+    <input
+      class="my-pos"
+      @input="onSearch($event.target.value)"
+      v-model="modelValue"
+      placeholder="Donde quieres ir?"
+    />
     <div
       :class="{ options: true, 'options-active': filteredOptions.length > 0 }"
       :tabindex="0"
