@@ -25,7 +25,7 @@ function onMinus(adultPlus: boolean) {
   }
 }
 
-function setCheckRoomates(this: boolean) {
+function setCheckRoomates() {
   hideRoomates.value = !hideRoomates.value;
 }
 </script>

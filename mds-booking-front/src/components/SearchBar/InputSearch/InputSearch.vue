@@ -7,7 +7,11 @@ const props = defineProps({
   modelValue: String,
 });
 const emits = defineEmits(["update:modelValue"]);
-function onSearch(value: string) {
+function onSearch(event: any) {
+  let value = "";
+  if (event && event.target && event.target.value) {
+    value = event.target.value;
+  }
   if (value.trimStart() === "") {
     filteredOptions.value = [];
     return;
@@ -27,7 +31,7 @@ function selectValue(value: string) {
   <div>
     <input
       class="my-pos"
-      @input="onSearch($event.target.value)"
+      @input="onSearch"
       v-model="modelValue"
       placeholder="Donde quieres ir?"
     />
