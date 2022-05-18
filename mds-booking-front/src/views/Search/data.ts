@@ -107,5 +107,5 @@ export const prices = [
 ]
 
 export const comodities = [
-    'WIFI', 'TV', 'Patio', 'Mascotas'
+    'WIFI', 'TV', 'Patio', 'Mascotas', 'Lavarropas', 'Gas Natural'
 ]

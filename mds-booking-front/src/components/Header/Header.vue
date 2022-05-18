@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import Logo from "../Logo.vue";
 import Menu from "./Menu.vue";
+import { useRoute } from "vue-router";
+const route = useRoute();
+console.log(route.path);
 </script>
 
 <template>
   <div class="header">
     <Logo />
-    <Menu />
+    <Menu v-if="!route.path.includes('login')" />
   </div>
 </template>
 

@@ -25,6 +25,9 @@ const sliderMin = computed({
     return minPrice.value.toString();
   },
   set: function (price: string) {
+    if (parseInt(price) < minPriceLimit.value) {
+      minPrice.value = minPriceLimit.value;
+    }
     minPrice.value = parseInt(price);
     if (minPrice.value > maxPrice.value) {
       maxPrice.value = minPrice.value;
@@ -36,6 +39,9 @@ const sliderMax = computed({
     return maxPrice.value.toString();
   },
   set: function (price: string) {
+    if (parseInt(price) > maxPriceLimit.value) {
+      maxPrice.value = maxPriceLimit.value;
+    }
     maxPrice.value = parseInt(price);
     if (maxPrice.value < minPrice.value) {
       minPrice.value = maxPrice.value;
@@ -51,6 +57,11 @@ function filterHouses(filter: string, value: string) {
     let filterList = filtersMap.get(filter);
     if (!filterList?.includes(value)) {
       filterList?.push(value);
+    } else {
+      filterList.splice(filterList.indexOf(value), 1);
+      if (filterList.length == 0) {
+        filtersMap.delete(filter);
+      }
     }
   } else {
     filtersMap.set(filter, [value]);
@@ -64,8 +75,6 @@ function filterHouses(filter: string, value: string) {
   });
   fetchFindByFilters(filters);
 }
-
-function test() {}
 
 fetchFindAll();
 fetchZones().then((data) => (zones.value = data));
@@ -101,6 +110,7 @@ fetchPrices().then((data) => {
             :max="maxPriceLimit"
             step="1"
             v-model="sliderMin"
+            class="range-slider-comp"
           />
           <input
             type="number"
@@ -108,6 +118,7 @@ fetchPrices().then((data) => {
             :max="maxPriceLimit"
             step="1"
             v-model="sliderMin"
+            class="range-slider-comp"
           />
           <input
             type="range"
@@ -115,6 +126,7 @@ fetchPrices().then((data) => {
             :max="maxPriceLimit"
             step="1"
             v-model="sliderMax"
+            class="range-slider-comp"
           />
           <input
             type="number"
@@ -122,6 +134,7 @@ fetchPrices().then((data) => {
             :max="maxPriceLimit"
             step="1"
             v-model="sliderMax"
+            class="range-slider-comp"
           />
         </div>
         <span>Comodidades</span>
@@ -132,8 +145,6 @@ fetchPrices().then((data) => {
             }}
           </li>
         </ul>
-
-        <button @click="test()">Filtrar</button>
       </div>
       <div class="results">
         <Grid :houses="houses" />
@@ -153,6 +164,8 @@ fetchPrices().then((data) => {
 }
 .filters {
   width: 10%;
+  height: fit-content;
+  gap: 10px;
   border-bottom-width: thin;
   border-bottom-color: black;
   border-bottom-style: solid;
@@ -166,37 +179,6 @@ fetchPrices().then((data) => {
 .results {
   width: 80%;
 }
-/*
-.slider {
-  -webkit-appearance: none;
-  width: 90%;
-  height: 15px;
-  border-radius: 5px;
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #04aa6d;
-  cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #04aa6d;
-  cursor: pointer;
-}
-*/
 ul {
   list-style-type: none;
   padding: 0px;
@@ -204,10 +186,16 @@ ul {
 
 /** Start 2ble slider */
 .range-slider {
-  margin: auto;
+  width: 90%;
   text-align: center;
   position: relative;
   height: 6em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.range-slider-comp {
+  width: 90%;
 }
 
 .range-slider input[type="range"] {
@@ -258,7 +246,6 @@ input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: 5px;
   cursor: pointer;
-  animate: 0.2s;
   background: #2497e3;
   border-radius: 1px;
   box-shadow: none;
