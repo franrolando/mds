@@ -1,12 +1,8 @@
-import { userDetails } from "./data"
-import { Credentials, UserDetails } from "./models"
+import { Credentials } from "./models"
+import { UserDetails } from "../../stores/userDetails/models"
+import HttpClient from "../../HttpClient"
 
-export function login(credentials: Credentials): UserDetails {
-    try {
-        //const result = await HttpClient.post('/login')
-        //return result.data
-    } catch (e) {
-        console.log(e)
-    }
-    return userDetails
+export async function login(credentials: Credentials): Promise<UserDetails> {
+    const { data } = await HttpClient.post('/auth', credentials)
+    return data;
 }

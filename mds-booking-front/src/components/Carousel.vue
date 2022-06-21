@@ -5,6 +5,7 @@ const props = withDefaults(defineProps<{ images: string[] }>(), {});
 const imagesLength = computed(() => props.images.length - 1);
 const selectedImage = ref(0);
 const emits = defineEmits(["imageClick"]);
+console.log(props.images);
 function goNextImage() {
   if (selectedImage.value < imagesLength.value) {
     selectedImage.value++;
@@ -28,11 +29,7 @@ function imageClicked() {
 
 <template>
   <div class="carousel">
-    <img
-      :src="props.images[selectedImage] + '=' + Math.floor(Math.random() * 200)"
-      class="img"
-      @click="imageClicked()"
-    />
+    <img :src="props.images[selectedImage].url" class="img" @click="imageClicked()" />
     <div>
       <span class="control prev" @click="goPrevImage()">prev</span>
       <span class="control next" @click="goNextImage()">next</span>

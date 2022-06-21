@@ -5,6 +5,7 @@ import Carousel from "./Carousel.vue";
 const props = withDefaults(defineProps<{ house: House }>(), {});
 const house = props.house;
 const router = useRouter();
+
 function openHouse() {
   router.push({ name: "house", params: { id: house.id } });
 }

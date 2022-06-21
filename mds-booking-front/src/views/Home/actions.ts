@@ -1,14 +1,22 @@
-import { findAll, findByFilters } from "./api"
+import { findRandomHouses, findByFilters } from "./api"
 import { Filter } from "./models"
-import store from "./store"
 
-export async function fetchFindAll() {
-    const data = await findAll()
-    store.setHouses(data)
+export async function fetchRandomHouses() {
+    try {
+        const data = await findRandomHouses()
+        return data
+    } catch (error: any) {
+        console.error(error)
+    }
 }
 
 export async function fetchFindByFilters(filters: Filter[]) {
-    const data = await findByFilters(filters)
-    store.setHouses(data)
+    try {
+        const data = await findByFilters(filters)
+        return data
+    } catch (error: any) {
+        console.error(error)
+    }
+
 }
 

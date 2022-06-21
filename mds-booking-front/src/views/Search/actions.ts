@@ -3,8 +3,13 @@ import { Filter } from "./models"
 import store from "./store"
 
 export async function fetchFindAll() {
-    const data = await findAll()
-    store.setHouses(data)
+    try {
+        const data = await findAll()
+        store.setHouses(data)
+        return data
+    } catch (error: any) {
+        console.log(error)
+    }
 }
 
 export async function fetchFindByFilters(filters: Filter[]) {
@@ -13,17 +18,32 @@ export async function fetchFindByFilters(filters: Filter[]) {
 }
 
 export async function fetchZones() {
-    const data = await findZones()
-    return data
+    try {
+        const data = await findZones()
+        return data
+    } catch (error: any) {
+        console.log(error)
+    }
+
 }
 
 export async function fetchPrices() {
+    try {
+
+    } catch (error: any) {
+        console.log(error)
+    }
     const data = await findPrices()
     return data
 }
 
 export async function fetchComodities() {
-    const data = await findComodities()
-    return data
+    try {
+        const data = await findComodities()
+        return data
+    } catch (error: any) {
+        console.log(error)
+    }
+
 }
 

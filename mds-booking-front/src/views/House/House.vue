@@ -9,11 +9,6 @@ const id = route.params.id;
 const house = computed(() => store.house);
 fetchFindById(id);
 const asd = ref({} as any);
-
-function getFromDate() {
-  let fromDate = { month: new Date().getMonth() + 1, year: new Date().getFullYear() };
-  return fromDate;
-}
 </script>
 
 <template>
@@ -28,9 +23,13 @@ function getFromDate() {
           is-dark
           is-range
           :rows="2"
-          :from-page="getFromDate()"
+          :from-page="{
+            month: new Date().getMonth() + 1,
+            year: new Date().getFullYear(),
+          }"
           :disabled-dates="house.reserved"
           :min-date="new Date()"
+          timezone="UTC"
           v-model="asd"
         />
       </div>

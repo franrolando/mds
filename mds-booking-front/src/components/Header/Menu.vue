@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { useStore } from "../../stores/userDetails/userDetails";
+import { useStore } from "../../stores/userDetails/userDetailsStore";
 import { storeToRefs } from "pinia";
 const router = useRouter();
 const store = useStore();

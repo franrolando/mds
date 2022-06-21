@@ -1,28 +1,19 @@
 import HttpClient from '../../HttpClient';
 import { data, filteredData, comodities, prices, zones } from './data';
 import { Filter, House } from './models';
-export function findAll(): House[] {
-    try {
-        /* const result = await HttpClient.get('/findAll')
-        return result.data */
-    } catch (e) {
-        console.log(e)
-    }
+export async function findAll(): Promise<House[]> {
+    const { data } = await HttpClient.post('/house/findBy', [])
     return data
 }
 
-export function findByFilters(filters: Filter[]): House[] {
-    try {
-        //const result = await HttpClient.get('/findBy?name=&startDay=&endDay=')
-        //return result.data
-    } catch (e) {
-        console.log(e)
-    }
-    return filteredData
+export async function findByFilters(filters: Filter[]): Promise<House[]> {
+    const { data } = await HttpClient.post('/findBy?', filters)
+    return data
 }
 
-export function findZones() {
-    return zones
+export async function findZones() {
+    const { data } = await HttpClient.get('/zone')
+    return data
 }
 
 
@@ -31,6 +22,7 @@ export function findPrices() {
 }
 
 
-export function findComodities() {
-    return comodities
+export async function findComodities() {
+    const { data } = await HttpClient.get('/comodity')
+    return data
 }

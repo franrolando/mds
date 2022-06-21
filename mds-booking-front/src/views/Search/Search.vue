@@ -97,7 +97,8 @@ fetchPrices().then((data) => {
         <span>Zona</span>
         <ul>
           <li v-for="zone in zones" class="filter">
-            <input type="checkbox" @change="filterHouses('Zona', zone)" /> {{ zone }}
+            <input type="checkbox" @change="filterHouses('Zona', zone.name)" />
+            {{ zone.name }}
           </li>
         </ul>
 
@@ -140,8 +141,8 @@ fetchPrices().then((data) => {
         <span>Comodidades</span>
         <ul>
           <li v-for="comodity in comodities" class="filter">
-            <input type="checkbox" @change="filterHouses('Comodity', comodity)" />{{
-              comodity
+            <input type="checkbox" @change="filterHouses('Comodity', comodity.name)" />{{
+              comodity.name
             }}
           </li>
         </ul>

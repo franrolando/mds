@@ -4,9 +4,11 @@ import Home from "./views/Home/Home.vue"
 import Login from './views/Login/Login.vue'
 import Profile from './views/Profile/Profile.vue'
 import Inquiries from './views/Inquiries/Inquiries.vue'
+import InquiryView from './views/InquiryView/InquiryView.vue'
 import Bookings from './views/Bookings/Bookings.vue'
+import BookingView from './views/BookingView/BookingView.vue'
 import Publications from './views/Publications/Publications.vue'
-import House from './views/House/House.vue'
+import HouseV from './views/House/House.vue'
 import Search from './views/Search/Search.vue'
 
 const router = createRouter({
@@ -49,13 +51,24 @@ const router = createRouter({
         }, {
             path: '/house/:id',
             name: 'house',
-            component: House,
+            component: HouseV,
             props: true
         }, {
             path: '/search',
             name: 'search',
             component: Search
+        }, {
+            path: '/booking',
+            name: 'booking',
+            component: BookingView,
+            props: true
+        }, {
+            path: '/inquiriesView',
+            name: 'inquiriesView',
+            component: InquiryView,
+            props: true
         }
+
     ]
 })
 

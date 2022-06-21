@@ -4,7 +4,7 @@ export const data = [{
     id: 1,
     name: 'name1',
     description: '',
-    reserved: [{ start: new Date('2022-04-25'), end: new Date('2022-04-27') }, { start: new Date('2022-04-29'), end: new Date('2022-04-30') }],
+    reserved: [{ start: new Date('2022-06-10'), end: new Date('2022-06-15') }, { start: new Date('2022-04-29'), end: new Date('2022-04-30') }],
     images: ['https://picsum.photos/1920/1080?random', 'https://picsum.photos/1920/1080?random', 'https://picsum.photos/1920/1080?random']
 }, {
     id: 2,

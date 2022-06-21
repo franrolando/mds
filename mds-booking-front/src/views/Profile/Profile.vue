@@ -1,8 +1,30 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useStore } from "../../stores/userDetails/userDetailsStore";
 import Account from "../Account/Account.vue";
-import { UserDetails } from "./model";
-const userDetails = ref({} as UserDetails);
+import { modifyProfile } from "./actions";
+const store = useStore();
+const userDetails = store.getUserDetails;
+const editingProfile = ref(false);
+
+function editProfile() {
+  editingProfile.value = !editingProfile.value;
+}
+
+async function saveProfile() {
+  const profile = await modifyProfile({
+    address: userDetails.address,
+    country: userDetails.country,
+    email: userDetails.email,
+    id: userDetails.id,
+    lastName: userDetails.lastName,
+    name: userDetails.name,
+    password: "",
+    phone: userDetails.phone,
+    username: "",
+  });
+  editingProfile.value = !editingProfile.value;
+}
 </script>
 
 <template>
@@ -10,27 +32,60 @@ const userDetails = ref({} as UserDetails);
     <div class="details">
       <div class="detail">
         <label>Nombre</label>
-        <input placeholder="Nombre" />
+        <input
+          placeholder="Nombre"
+          v-model="userDetails.name"
+          :readonly="!editingProfile"
+        />
       </div>
       <div class="detail">
         <label>Apellido</label>
-        <input placeholder="Apellido" />
+        <input
+          placeholder="Apellido"
+          v-model="userDetails.lastName"
+          :readonly="!editingProfile"
+        />
       </div>
       <div class="detail">
         <label>Email</label>
-        <input placeholder="Email" />
+        <input
+          placeholder="Email"
+          v-model="userDetails.email"
+          :readonly="!editingProfile"
+        />
+        <button>Actualizar email</button>
+      </div>
+
+      <div class="detail">
+        <label>Pais</label>
+        <input
+          placeholder="Pais"
+          v-model="userDetails.country"
+          :readonly="!editingProfile"
+        />
       </div>
       <div class="detail">
         <label>Direccion</label>
-        <input placeholder="Direccion" />
+        <input
+          placeholder="Direccion"
+          v-model="userDetails.address"
+          :readonly="!editingProfile"
+        />
       </div>
       <div class="detail">
-        <label>Contraseña</label>
-        <input placeholder="Contraseña" />
+        <label>Telefono</label>
+        <input
+          placeholder="Telefono"
+          v-model="userDetails.phone"
+          :readonly="!editingProfile"
+        />
       </div>
-      <div class="detail">
-        <label>Nombre</label>
-        <input placeholder="Confirmar contraseña" />
+      <div v-if="!editingProfile" class="detail">
+        <button @click="editProfile">Editar</button>
+      </div>
+      <div v-else="editingProfile" class="detail">
+        <button @click="saveProfile">Guardar</button>
+        <button @click="editProfile">Cancelar</button>
       </div>
     </div>
   </Account>

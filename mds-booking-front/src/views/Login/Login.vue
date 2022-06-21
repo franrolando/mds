@@ -3,40 +3,90 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import Logo from "../../components/Logo.vue";
 import { doLogin } from "./actions";
-import { useStore } from "../../stores/userDetails/userDetails";
+import { useStore } from "../../stores/userDetails/userDetailsStore";
 const store = useStore();
 const router = useRouter();
 const username = ref("");
 const password = ref("");
-function onLogin() {
-  doLogin({ username: username.value, password: password.value })
-    .then((data) => {
+const invalidCredentials = ref(false);
+const invalidEmail = ref(false);
+const usernameEmpty = ref(false);
+const passwordEmpty = ref(false);
+async function onLogin() {
+  if (validate()) {
+    const data = await doLogin({ email: username.value, password: password.value });
+    if (data) {
       localStorage.setItem("userDetails", JSON.stringify(data));
       store.addUserDetails(data);
       router.push({ name: "home" });
-    })
-    .catch((e) => {
-      username.value = "";
-      password.value = "";
-    });
+      invalidCredentials.value = false;
+    } else {
+      invalidCredentials.value = true;
+    }
+  }
+}
+
+function validate(): boolean {
+  if (!username.value) {
+    usernameEmpty.value = true;
+  } else {
+    usernameEmpty.value = false;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(username.value)) {
+      invalidEmail.value = false;
+    } else {
+      invalidEmail.value = true;
+    }
+  }
+  if (!password.value) {
+    passwordEmpty.value = true;
+  } else {
+    passwordEmpty.value = false;
+  }
+  if (usernameEmpty.value || passwordEmpty.value || invalidEmail.value) {
+    return false;
+  }
+  return true;
+}
+
+function inputUsername() {
+  invalidEmail.value = false;
+  invalidCredentials.value = false;
+  if (username.value) {
+    usernameEmpty.value = false;
+  }
+}
+
+function inputPassword() {
+  invalidCredentials.value = false;
+  if (password.value) {
+    passwordEmpty.value = false;
+  }
 }
 </script>
 
 <template>
-  <BasePage>
-    <div class="as">
-      <Logo />
-      <div class="login-form">
-        <input placeholder="Email o Usuario" v-model="username" />
-        <input placeholder="Contraseña" v-model="password" />
-        <button @click="onLogin()">Iniciar sesion</button>
-        <div class=".login-buttons">
-          <span class="link">Registrarse</span>
-          <span class="link">Olvide mi contraseña</span>
-        </div>
+  <div class="as">
+    <Logo />
+    <div class="login-form">
+      <input placeholder="Email o Usuario" v-model="username" @input="inputUsername()" />
+      <span v-if="invalidCredentials">Invalid credentials</span>
+      <span v-if="usernameEmpty">Username cannot be empty</span>
+      <span v-if="invalidEmail">Username invalid</span>
+      <input
+        type="password"
+        placeholder="Contraseña"
+        v-model="password"
+        @input="inputPassword()"
+      />
+      <span v-if="passwordEmpty">Password cannot be empty</span>
+      <button @click="onLogin()">Iniciar sesion</button>
+      <div class=".login-buttons">
+        <span class="link">Registrarse</span>
+        <span class="link">Olvide mi contraseña</span>
       </div>
     </div>
-  </BasePage>
+  </div>
 </template>
 
 <style scoped>

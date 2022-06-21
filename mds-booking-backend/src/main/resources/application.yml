@@ -1,0 +1,12 @@
+server:
+  port: 8081
+
+spring:  profiles:    active: test
+  data:
+    jpa.repositories.enabled: true
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/mds
+    username: postgres
+    password: lache11
+  jpa:    hibernate:      ddl-auto: validate
