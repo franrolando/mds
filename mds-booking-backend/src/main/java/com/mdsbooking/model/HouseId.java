@@ -7,6 +7,8 @@ import javax.persistence.Embeddable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+
 @Embeddable
 public class HouseId implements Serializable {
 
@@ -32,4 +34,23 @@ public class HouseId implements Serializable {
 		this.userId = userId;
 	}
 
+	@Override
+	public int hashCode() {
+		return this.id.intValue() + this.userId.intValue();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof HouseId))
+            return false;
+        if (obj == this)
+            return true;
+
+        HouseId rhs = (HouseId) obj;
+        return new EqualsBuilder()
+            .append(id, rhs.id)
+            .append(userId, rhs.userId)
+            .isEquals();
+	}
+	
 }

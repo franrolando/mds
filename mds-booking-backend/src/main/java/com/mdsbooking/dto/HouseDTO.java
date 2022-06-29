@@ -7,6 +7,7 @@ public abstract class HouseDTO<T> {
 	private Integer id;
 	private String name;
 	private String description;
+	private Double price;
 	private ZoneDTO zone;
 	private Set<ComodityDTO> comodities;
 	private Long userId;
@@ -70,6 +71,14 @@ public abstract class HouseDTO<T> {
 
 	public void setComodities(Set<ComodityDTO> comodities) {
 		this.comodities = comodities;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
 }

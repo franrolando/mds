@@ -6,13 +6,16 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.EntityResult;
 import javax.persistence.FetchType;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.FieldResult;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
+import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
 
 @Entity
 @Table(name = "house")
@@ -22,6 +25,7 @@ public class House implements Serializable {
 	private HouseId id;
 	private String name;
 	private String description;
+	private Double price;
 	@OneToMany(mappedBy = "house", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<HouseImage> images;
 	@OneToMany(mappedBy = "house", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -108,5 +112,28 @@ public class House implements Serializable {
 		this.comodities = comodities;
 	}
 
+	@Override
+	public int hashCode() {
+		return this.id.getId().intValue() + this.id.getUserId().intValue();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof House))
+			return false;
+		if (obj == this)
+			return true;
+
+		House rhs = (House) obj;
+		return new EqualsBuilder().append(id, rhs.id).isEquals();
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 
 }

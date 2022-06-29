@@ -5,7 +5,6 @@ const props = withDefaults(defineProps<{ images: string[] }>(), {});
 const imagesLength = computed(() => props.images.length - 1);
 const selectedImage = ref(0);
 const emits = defineEmits(["imageClick"]);
-console.log(props.images);
 function goNextImage() {
   if (selectedImage.value < imagesLength.value) {
     selectedImage.value++;

@@ -13,7 +13,9 @@ export async function fetchFindAll() {
 }
 
 export async function fetchFindByFilters(filters: Filter[]) {
+    console.log(filters)
     const data = await findByFilters(filters)
+
     store.setHouses(data)
 }
 

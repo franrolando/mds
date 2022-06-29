@@ -54,6 +54,7 @@ public class Beans {
 			@Override
 			protected void configure() {
 				map().setId(source.getComodity().getId());
+				map().setName(source.getComodity().getName());
 			}
 		});
 		return modelMapper;

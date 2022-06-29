@@ -11,8 +11,11 @@ public class FilterFactory {
 		case "ZONE":
 			newFilter = new ZoneFilter();
 			break;
-		case "PRICE":
-			newFilter = new PriceFilter();
+		case "MIN_PRICE":
+			newFilter = new MinPriceFilter();
+			break;
+		case "MAX_PRICE":
+			newFilter = new MaxPriceFilter();
 			break;
 		}
 		return newFilter;

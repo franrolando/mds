@@ -12,6 +12,7 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
@@ -54,6 +55,11 @@ public class AwsService {
 		URL objectUrl = s3.getUrl(BUCKET_NAME, objectKey);
 		String path = objectUrl.getProtocol() + "://" + objectUrl.getAuthority() + objectUrl.getPath();
 		return path;
+	}
+
+	public void deleteImages(String userId, String houseId) {
+		DeleteObjectRequest dor = new DeleteObjectRequest(BUCKET_NAME, userId + PATH_SEPARATOR + houseId );
+		s3.deleteObject(dor);
 	}
 
 }

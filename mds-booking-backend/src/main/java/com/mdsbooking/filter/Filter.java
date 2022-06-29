@@ -1,9 +1,11 @@
 package com.mdsbooking.filter;
 
-import com.mdsbooking.model.House;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 public interface Filter {
 
-	public abstract void addFilterToHouse(House house, String value);
+	public abstract Predicate addFilterToHouse(CriteriaBuilder cb,Root root, String value);
 
 }
